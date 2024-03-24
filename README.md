@@ -1,8 +1,10 @@
 # mtg_brawlpioneer
 Diverse tools for custom format: Brawl Pioneer:
-- [ ] Decklist Validator
+- [X] [Decklist Validator](https://spigushe.github.io/mtg_brawlpioneer/decklist_validator.html)
 - [X] [Annnouncement history](https://spigushe.github.io/mtg_brawlpioneer/announcement_history.html)
 - [X] [JSON banlist](https://spigushe.github.io/mtg_brawlpioneer/current_banlist.json)
+- [ ] Rules
+- [ ] Committee Presentation
 
 ## KEEPING THE PROJECT UP-TO-DATE
 * Each banlist is stored as `JSON` file of condensed data from official source (in `mtgdc_banlists > banlists` folder).
