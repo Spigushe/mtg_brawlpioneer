@@ -40,7 +40,7 @@ class BanlistCompiler:
         except ModuleNotFoundError:
             banlists_path = Path(__file__).parent / "banlists"
 
-            if not self._banlists_path.is_dir():
+            if not banlists_path.is_dir():
                 raise FileNotFoundError(
                     f"Banlist directory '{banlists_path}' not found."
                 )
