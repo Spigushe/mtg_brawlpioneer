@@ -3,10 +3,11 @@ name: push_workflow
 
 on:
     push:
-        branches: "**"
+        branches: "main"
     workflow_dispatch: {} # Allows manual triggering from Actions tab
 
 permissions:
+    contents: write
     pages: write
     id-token: write
 
