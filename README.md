@@ -1,9 +1,18 @@
 # mtg_brawlpioneer
-Validation tool for custom format: Brawl Pioneer
+Diverse tools for custom format: Brawl Pioneer:
+- [ ] Decklist Validator
+- [X] [Annnouncement history](https://spigushe.github.io/mtg_brawlpioneer/announcement_history.html)
+- [X] [JSON banlist](https://spigushe.github.io/mtg_brawlpioneer/current_banlist.json)
 
-## SOLUTION TO KEEP THE PROJECT UPDATED
+## KEEPING THE PROJECT UP-TO-DATE
 * Each banlist is stored as `JSON` file of condensed data from official source (in `mtgdc_banlists > banlists` folder).
-* Static files are generated after each push.
+* Static files listed above are generated after each push.
+
+### HOW TO ADD A NEW BANLIST
+1. Put the new banlist file into `./mtgbp_banlists/banlists` with name `%Y-%m-%d.json`.
+1. Commit and push the changes to your repository, it will trigger the generation of new static files.
+
+*It works the same for editing and removing a banlist.*
 
 ### BANLIST FILE FORMATTING
 File name must be `%Y-%m-%d.json` format with the following template:
@@ -22,13 +31,8 @@ File name must be `%Y-%m-%d.json` format with the following template:
 ]
 ```
 
-### HOW TO ADD A NEW BANLIST
-1. Put the new banlist file into `./banlists` with name `%Y-%m-%d.json`.
-1. Commit and push the changes to your repository, it will trigger the generation of new static files.
 
-*It works the same for editing and removing a banlist.*
-
-## REQUIIREMENTS
+## REQUIREMENTS
 This project runs using Python (v3.11+).
 
 ## INSTALLATION
