@@ -304,3 +304,48 @@ class HTMLCard:
                 len(self.data["special"]) == 0,
             ]
         )
+
+
+class HTMLValidator:
+    def __init__(self) -> None:
+        self._get_static_directory()
+        self.header = self._get_static_html("header.html")
+        self.page = self._get_static_html("page_validator.html")
+        self.footer = self._get_static_html("footer.html")
+
+    def _get_static_directory(self) -> None:
+        """
+        Validates if the static directory exists.
+
+        Raises:
+            FileNotFoundError: If the static directory is not found.
+        """
+        try:
+            static_path = pkg_resources.resource_filename("banlist_handler", "static")
+        except ModuleNotFoundError:
+            static_path = Path(__file__).parent / "static"
+
+            if not static_path.is_dir():
+                raise FileNotFoundError(f"Banlist directory '{static_path}' not found.")
+
+        self._static_path = static_path
+
+    def _get_static_html(self, target) -> str:
+        with open(str(self._static_path / target), "r", encoding="utf-8") as file:
+            return file.read()
+
+    @staticmethod
+    def export() -> None:
+        self = HTMLValidator()
+
+        filepath = Path().absolute() / "docs"
+        filename = "decklist_validator.html"
+
+        # If the file already exists, delete it
+        if os.path.exists(filepath / filename):
+            (filepath / filename).unlink()
+
+        with open(filepath / filename, "xt", encoding="utf-8") as outf:
+            outf.write(self.header)
+            outf.write(self.page)
+            outf.write(self.footer)

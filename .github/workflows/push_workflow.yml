@@ -57,9 +57,10 @@ jobs:
               uses: jannekem/run-python-script-action@v1
               with:
                 script: |
-                  from mtgbp_banlists import HTMLBanlist, JSONBanlist
+                  from mtgbp_banlists import HTMLBanlist, HTMLValidator, JSONBanlist
                   JSONBanlist.export()
                   HTMLBanlist.export()
+                  HTMLValidator.export()
             - name: Add & commit files
               uses: EndBug/add-and-commit@v9
               with:
