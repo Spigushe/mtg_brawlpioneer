@@ -153,7 +153,9 @@ class HTMLBanlist(BanlistCompiler):
 
         self._get_static_directory()
         self.header = self._get_static_html("header.html")
-        self.footer = self._get_static_html("footer.html")
+        self.header += self._get_static_html("header_history.html")
+        self.footer = self._get_static_html("footer_history.html")
+        self.footer += self._get_static_html("footer.html")
 
     @staticmethod
     def export() -> None:
