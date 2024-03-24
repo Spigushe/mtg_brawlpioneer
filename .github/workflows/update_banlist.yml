@@ -30,7 +30,7 @@ jobs:
             - name: Add & commit JSON banlist
               uses: EndBug/add-and-commit@v9
               with:
-                add: "current_banlist.json announcement_history.html"
+                add: "docs/current_banlist.json docs/announcement_history.html"
                 author_name: FunkyMax
                 author_email: polak.maxence@orange.fr
                 commit: --signoff

@@ -134,7 +134,7 @@ class JSONBanlist(BanlistCompiler):
         """
         banlist = JSONBanlist()
 
-        filepath = Path().absolute()
+        filepath = Path().absolute() / "docs"
         filename = "current_banlist.json"
 
         # If the file already exists, delete it
@@ -160,7 +160,7 @@ class HTMLBanlist(BanlistCompiler):
         self = HTMLBanlist()
         banlist_cards = self._get_html_cards()
 
-        filepath = Path().absolute()
+        filepath = Path().absolute() / "docs"
         filename = "announcement_history.html"
 
         # If the file already exists, delete it
