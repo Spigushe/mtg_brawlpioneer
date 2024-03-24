@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <!-- Data Crawling -->
+    <meta name="robots" content="all">
+    <!-- OG handling -->
+    <meta property="og:title" content="Current Banlist - Barrin's Data" />
+    <meta name="description" content="Strategical Resources for Duel Commande (site mainly in French)">
+    <meta property="og:description"
+        content="Display of the currect banlist and the changes that occured since 2015." />
+    <meta property="og:image" content="https://barrins-codex.org/static/img/favicon.ico" />
+    <meta property="og:image:url" content="https://barrins-codex.org/static/img/favicon.ico" />
+    <!-- General Purpose tags -->
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="Magic: the Gathering, MtG, Duel Commander, Commander, Duel, EDH">
+    <!-- Icon -->
+    <link rel="shortcut icon" href="https://barrins-codex.org/static/img/favicon.icoo">
+    <link rel="icon" href="https://barrins-codex.org/static/img/icons/codex.svg">
+    <!-- Style Sheets -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Title -->
+    <title>Brawl Pioneer</title>
+    <!-- Boostrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+        rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+        crossorigin="anonymous">
+    <!-- Awesome Font -->
+    <script src="https://kit.fontawesome.com/4ae9bdd55b.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-nav navbar-expand-md bg-light w-100 sticky-top header">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <h1 class="navbar-brand ms-0"><a href="/index" class="text-body fs-2">Barrin's Data</a></h1>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto me-auto mb-2 mb-lg-0">
+                    <!-- #Projet mtg_brawlpioneer -->
+                    <li class="nav-item mx-3">
+                        <a href="https://github.com/Spigushe/mtg_brawlpioneer" class="btn">
+                            <i class="fa-brands fa-github"></i>
+                            mtg_brawlpioneer
+                        </a>
+                    </li>
+                    <li class="nav-item mx-3">
+                        <a href="https://spigushe.github.io/mtg_brawlpioneer/decklist_validator.html" class="btn">
+                            <i class="fa-solid fa-spell-check"></i>
+                            Validator
+                        </a>
+                    </li>
+                    <li class="nav-item mx-3">
+                        <a href="https://spigushe.github.io/mtg_brawlpioneer/announcement_history.html" class="btn">
+                            <i class="fa-solid fa-book"></i>
+                            Announcements
+                        </a>
+                    </li>
+                    <li class="nav-item mx-3">
+                        <a href="https://spigushe.github.io/mtg_brawlpioneer/current_banlist.json" class="btn">
+                            <i class="fa-solid fa-diagram-project"></i>
+                            JSON banlist
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="barrins-codex-banner">
+        Decklist Validator
+    </div>
+
+    <article class="col-8 ms-auto me-auto my-4">
+        This page is a light tool created to validate decklists in the Brawl Pioneer format.
+        Brawl Pioneer is a fan-made Magic: the Gathering format that combines elements
+        from the official formats Brawl and Pioneer. Since the list of authorized cards differs
+        from Brawl and Pioneer, this tool helps keep one's deck within legal limits.
+    </article>
+
+    <div class="d-md-flex flex-row justify-content-around mb-4">
+        <div>
+            <h2>Decklist</h2>
+            <p>
+                <i>One card per line</i>
+            </p>
+            <form id="deck-form" onsubmit="return false;">
+                <textarea name="decklist" id="decklist" style="width:100%;margin:0;padding:0;" rows="15"></textarea>
+                <button id="btn-submit" class="btn-calcul">Check validity</button>
+            </form>
+        </div>
+        <div>
+            <h2>Legal cards (<span id="counter-legal">0</span>)</h2>
+            <table id="decklist-legal" style="margin: 1.5em"></table>
+        </div>
+        <div>
+            <h2>Illegal cards (<span id="counter-banned">0</span>)</h2>
+            <table id="decklist-banned" style="margin: 1.5em"></table>
+        </div>
+    </div>
+
+    <article>
+        <div class="barrins-codex-tip">
+            <h3>Brawl Pioneer as an alternative to Duel Commander and Brawl</h3>
+            <p>
+                The fan-made Brawl Pioneer format lets you play fast and furious games
+                like Duel Commander with Pioneer cards, which reduces the intrinsically
+                strong cards and allows everyone everyone to have decks of relatively
+                equivalent power.
+            </p>
+        </div>
+    </article>
+
+    <script>
+        const button = document.getElementById("btn-submit");
+        var banlist = Array()
+        get_banlist()
+        button.addEventListener("click", check_legality, false);
+        button.addEventListener("tap", check_legality, false);
+
+        const parent = {
+            "legal": document.getElementById("decklist-legal"),
+            "not_legal": document.getElementById("decklist-banned"),
+            "banned": document.getElementById("decklist-banned"),
+        };
+        const counter = {
+            "legal": document.getElementById("counter-legal"),
+            "not_legal": document.getElementById("counter-banned"),
+            "banned": document.getElementById("counter-banned"),
+        };
+
+        async function get_banlist() {
+            url = "https://spigushe.github.io/mtg_brawlpioneer/current_banlist.json";
+            let response = await fetch(url)
+            banlist = await response.json();
+        }
+
+        function check_legality() {
+            // Cleans elements before new check
+            clean(document.getElementById("decklist-legal"));
+            clean(document.getElementById("decklist-banned"));
+            document.getElementById("counter-legal").innerHTML = 0;
+            document.getElementById("counter-banned").innerHTML = 0;
+
+            // Decklist walk through
+            const decklist_form = document.getElementById("decklist");
+            let decklist = decklist_form.value.split("\n");
+            decklist.forEach((elt, idx) => {
+                let card = elt.replaceAll(/[0-9]+ /gi, "");
+                // Checking legality
+                let status = null;
+                setTimeout(async function () {
+                    status = await control(card);
+                    // Return card info
+                    add_element(status, idx);
+                    // Style
+                    start_tippy();
+                }, 200 * idx);
+            });
+        }
+
+        function clean(elt) {
+            while (elt.hasChildNodes()) {
+                elt.removeChild(elt.lastChild);
+            }
+        }
+
+        async function control(card) {
+            if (card == "") return false;
+            let in_banlist = banlist["banned_cards"].includes(card);
+            let legal = banlist["banned_cards"].includes(card) ? "banned" : "unknown";
+            if (!in_banlist) {
+                legal = await check_scryfall(card, "legal");
+            }
+            return {
+                "card": card,
+                "td.id": "leg_" + str_clean(card).replaceAll("+", ""),
+                "legal": legal,
+                "id": await check_scryfall(card, "id"),
+            };
+        }
+
+        async function check_scryfall(card, choice) {
+            card = str_clean(card);
+            let response = await fetch(
+                "https://api.scryfall.com/cards/named?fuzzy=" + card
+            );
+            let myJson = await response.json();
+            return {
+                "legal": (myJson["legalities"]["pioneer"] == "not_legal") ? "not_legal" : "legal",
+                "url": myJson["scryfall_uri"],
+                "img": myJson["image_uris"]["border_crop"],
+                "id": myJson["id"],
+            }[choice] ?? "";
+        }
+
+        function str_clean(str) {
+            str = str.toLowerCase();
+            str = str.replaceAll(/[0-9]+ /gi, "");
+            str = str.replaceAll(" ", "+");
+            str = str.replaceAll("'", "+");
+            str = str.replaceAll(",", "+");
+            return str;
+        }
+
+        function add_element(card_info, idx) {
+            if (!card_info) return;
+
+            // Constructing DOM
+            let tr = document.createElement("tr");
+            let td_legality = document.createElement("td");
+            let td_name = document.createElement("td");
+            tr.appendChild(td_legality);
+            tr.appendChild(td_name);
+            // Adding information
+            tr.id = "tr_" + idx;
+            td_legality.id = card_info["tr.id"];
+            // Adding link to scryfall
+            bannned_as_commander = banlist["banned_commanders"].includes(card_info["card"]) ? `<i class="fa-solid fa-triangle-exclamation text-warning me-2" alt="Banned as commadner" title="Banned as commander"></i>` : ``;
+            td_name.innerHTML = `<span class="card-name" scryfallId="`+card_info["id"]+`" data-tippy-content="
+<div class='card-container'>
+<img
+data-src='https://api.scryfall.com/cards/`+card_info["id"]+`?format=image&version=border_crop'
+class='card-image'
+/>
+</div>">`+bannned_as_commander+card_info["card"]+`</span>`;
+            // Inserting line
+            parent[card_info["legal"]].appendChild(tr);
+            // Increment counter
+            counter[card_info["legal"]].innerHTML = counter[card_info["legal"]].innerHTML * 1 + 1;
+        }
+
+        function start_tippy() {
+            tippy('span.card-name', {
+                touchHold: true,
+                hideOnClick: false,
+                interactive: true,
+                placement: 'left',
+                distance: 20,
+                arrow: true,
+                animateFill: false,
+                animation: 'shift-away',
+                // In ES5 as you don't have a transpilation step(?):
+                onShow: function(instance) {
+                    var img = instance.popper.querySelector('img');
+                    img.src = img.dataset.src;
+                }
+            });
+        }
+    </script>
+
+    <footer class="d-block bg-light mt-6 w-100">
+        <div class="d-flex flex-row justify-content-around align-items-center py-3" style="background-color: #99A5C5 !important;width:100%">
+            <p class="col-4">
+                <strong>Barrin's Data</strong> is unofficial Fan Content
+                <br>permitted under the Fan Content Policy.
+                <br>Not approved nor endorsed by
+                <a class='text-reset' target="_blank" rel="noreferrer" href="https://magic.wizards.com/en">Wizards of the Coast</a>.
+            </p>
+
+            <p class="col-4">
+                Portions of the materials used are property of Wizards of the Coast.
+                <br><i class="fa-regular fa-copyright"></i> <a class='text-reset' target="_blank" rel="noreferrer" href="https://magic.wizards.com/en">Wizards of the Coast</a> LLC.
+                <br>Code source :
+                <a class='text-reset' target="_blank" rel="noreferrer" href="https://github.com/Spigushe/mtg_brawlpioneer"><i class='fa-brands fa-github'></i> GitHub</a>
+            </p>
+        </div>
+        <div class="ms-auto me-auto py-2 d-block">
+            <p>
+                <i>
+                    This HTML file has been generated by the
+                    <a href="https://github.com/Spigushe/mtg_brawlpioneer">
+                    mtg_brawlpioneer</a> project. This project also provides
+                    a JSON object with the current banlist that you can use
+                    for your projects.
+                </i>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/popper.js@1"></script>
+    <script src="https://unpkg.com/tippy.js@4"></script>
+
+    <!-- JS Styling-->
+    <script src="https://barrins-codex.org/static/js/barrins-codex.js"></script>
+
+</body>
+</html>
