@@ -22,7 +22,7 @@ jobs:
                 pip install -e .[dev]
             - name: Check format
               run: |
-                black --check .
+                black --diff -v . && isort . --profile=black
             - name: Lint
               run: |
                 ruff check --output-format github
