@@ -24,12 +24,13 @@ jobs:
               uses: jannekem/run-python-script-action@v1
               with:
                 script: |
-                  from mtgbp_banlists import JSONBanlist
+                  from mtgbp_banlists import HTMLBanlist, JSONBanlist
                   JSONBanlist.export()
-            - name: Add & commit files
+                  HTMLBanlist.export()
+            - name: Add & commit JSON banlist
               uses: EndBug/add-and-commit@v9
               with:
-                add: "current_banlist.json"
+                add: "current_banlist.json announcement_history.html"
                 author_name: FunkyMax
                 author_email: polak.maxence@orange.fr
                 commit: --signoff
