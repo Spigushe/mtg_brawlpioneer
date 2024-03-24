@@ -1,0 +1,20 @@
+[
+    {
+        "date": "2022-04-13",
+        "link": "https://www.facebook.com/BrawlpioneerMTG/posts/pfbid02YJqSZ9Aj9MjAtQpzagEbsHTYHN5ZG9hAFRNE5aH5t7bbjZHCU1FBim55fG4vZ58Dl",
+        "special": "Strixhaven's Lessons are playable in a pseudo-sideboard that can contain up to 7 lessons.",
+        "newly_banned_as_commander": [],
+        "newly_unbanned_as_commander": [],
+        "newly_banned_in_deck": [],
+        "newly_unbanned_in_deck": [
+            "Gideon's Intervention",
+            "Phyrexian Revoker",
+            "Underworld Breach"
+        ],
+        "explanations": {
+            "Gideon's Intervention": "<p>The mana value of the card is too high to pose a real threat to the format, despite being able to lock the cast of the commander.</p>",
+            "Phyrexian Revoker": "<p>Phyrexian Revoker is able to deal with Planeswalkers, preventing them from being activated. Having a double type permits players to deal with this card more easily. We assume that this card is not a threat to the format and is thereby unbanned.</p>",
+            "Underworld Breach": "<p>This card has been initially banned as it was baned in Pioneer. After careful tests, this card is not much of a threat in this format. Underworld Breach is now unbanned and remains under scrutiny.</p>"
+        }
+    }
+]

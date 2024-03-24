@@ -1,0 +1,16 @@
+[
+    {
+        "date": "2020-11-20",
+        "link": "No announcement was made for this update, only a comment on a discussion.",
+        "special": "",
+        "newly_banned_as_commander": [],
+        "newly_unbanned_as_commander": [],
+        "newly_banned_in_deck": [],
+        "newly_unbanned_in_deck": [
+            "Lutri, the Spellchaser"
+        ],
+        "explanations": {
+            "Lutri, the Spellchaser": "<p>After nearly two years of existence, no URx deck has neither dominated nor wrapped the format. Because Lutri, the Spellchaser is the only banned commander, it has been decided to unban it as both a card and a companion. We remain vigilant about this decision, and we will be prone to re-ban it if necessary.</p>"
+        }
+    }
+]

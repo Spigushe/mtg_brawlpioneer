@@ -1,0 +1,25 @@
+[
+    {
+        "date": "2024-03-20",
+        "link": "https://www.facebook.com/BrawlpioneerMTG/posts/pfbid02YQd9qtAnM3JJABDx7JcKdvxpLzm2DNhc1XZGB79bQMh3kcpxCNEp6dv9EzyLAR6dl",
+        "special": "Construction Rules now permit to have a 15-cards sideboard.",
+        "newly_banned_as_commander": [],
+        "newly_unbanned_as_commander": [],
+        "newly_banned_in_deck": [
+            "Uro, Titan of Nature's Wrath",
+            "Veil of Summer"
+        ],
+        "newly_unbanned_in_deck": [
+            "Pithing Needle",
+            "Sorcerous Spyglass",
+            "Walking Ballista"
+        ],
+        "explanations": {
+            "Pithing Needle": "<p>It is expected that Pithing Needle and Sorcerous Spyglass will see play in sideboard of almost any deck. Despite this fact, the added value of those two cards will help decks with few interactions deal with threats such as planeswalkers and activated abilities from commanders.</p>",
+            "Sorcerous Spyglass": "<p>It is expected that Pithing Needle and Sorcerous Spyglass will see play in sideboard of almost any deck. Despite this fact, the added value of those two cards will help decks with few interactions deal with threats such as planeswalkers and activated abilities from commanders.</p>",
+            "Uro, Titan of Nature's Wrath": "<p>Uro, Titan of Nature's Wrath represents more than just a card in a deck. It prevents aggressive decks from dealing lethal damage due to its ability to gain life each time it hits the board or attacks. It also serves as an oppressive draw engine against control and combo decks. Thus, Uro, Titan of Nature's Wrath is banned.</p>",
+            "Veil of Summer": "<p>The arrival of a fully functional sideboard, as opposed to the 7-lesson board we had before, posed more questions than answers. Moreover, it is expected that any deck that could play the card will play it at least in the sideboard. Veil of Summer is preemptively banned, as we expect its predominance in any deck.</p>",
+            "Walking Ballista": "<p>Walking Ballista was banned because it represented a combo piece with Heliod, Sun-Crowned which could be present in a command zone. This seems a serious threat, but the players are warned and have answers like Pithing Needle, Sorcerous Spyglass, and Phyrexian Revocator to avoid the overuse of this combo.</p>"
+        }
+    }
+]

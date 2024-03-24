@@ -1,0 +1,24 @@
+[
+    {
+        "date": "2023-10-28",
+        "link": "https://www.facebook.com/BrawlpioneerMTG/posts/pfbid0hav4YU9LhJzqQsGYcGE2Xp3xXGbM3kZaonUE3iuJp3VXv2XCMq9mnaWX2M45i39Gl",
+        "special": "",
+        "newly_banned_as_commander": [],
+        "newly_unbanned_as_commander": [],
+        "newly_banned_in_deck": [],
+        "newly_unbanned_in_deck": [
+            "Felidar Guardian",
+            "Inverter of Truth",
+            "Leyline of Abundance",
+            "Nexus of Fate",
+            "Veil of Summer"
+        ],
+        "explanations": {
+            "Felidar Guardian": "<p>This card has been initially banned as it was baned in Pioneer. After careful tests, this card is not much of a threat in this format. Underworld Breach is now unbanned and remains under scrutiny.</p><p>In retrospect, the format is made up overwhelmingly of midrange decks, a few aggro and control decks, and almost no combo decks. To ensure that everyone can play all archetypes, there should not be any objections to making these two cards playable.</p>",
+            "Inverter of Truth": "<p>This card has been initially banned as it was baned in Pioneer. After careful tests, this card is not much of a threat in this format. Underworld Breach is now unbanned and remains under scrutiny.</p><p>In retrospect, the format is made up overwhelmingly of midrange decks, a few aggro and control decks, and almost no combo decks. To ensure that everyone can play all archetypes, there should not be any objections to making these two cards playable.</p>",
+            "Leyline of Abundance": "<p>As for Felidar Guardian and Inverter of Truth, this card was preemptively banned. The singleton aspect of the format makes up for the variance of Leyline of Abundance. Green decks are not much played, and this card could help them to be more present. After testing this card and other Leylines, this card is unbanned as their impact on the first turn seems minimal.</p>",
+            "Nexus of Fate": "<p>As of now, no deck has demonstrated extra turns to be a viable strategy. Despite its original strategy and unique gameplay, extra turns are not an issue for this card. Then, giving them more options, such as Nexus of Fate and its unique functionality, should help this strategy be played.</p>",
+            "Veil of Summer": "<p>Green decks are not really much played, and a similar card is legal: Cavern of Souls. Unbanning this card will give decks more options to deal with interactions. The unbans of Veil of Summer and Leyline of Abundance are meant to help green decks compete in the current field.</p>"
+        }
+    }
+]
