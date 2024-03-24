@@ -6,7 +6,7 @@ from pathlib import Path
 import pkg_resources
 
 
-class BanlistCompiler:
+class BanlistCompiler(object):
     """
     Class responsible for loading and managing Brawl Pioneer banlists.
     The banlists are loaded from JSON files stored in the "banlists" directory.
@@ -25,6 +25,8 @@ class BanlistCompiler:
         self._get_banlists_directory()
         self._collect_json_files()
         self._parse_json_files()
+
+        self._dates = sorted(self._dates, reverse=True)
 
     def _get_banlists_directory(self) -> None:
         """
@@ -103,14 +105,10 @@ class JSONBanlist(BanlistCompiler):
         }
 
     @staticmethod
-    def export(output_filename="") -> None:
+    def export() -> None:
         """Procedure that generates the '.json' version of the banlist in the current folder.
 
         This method exports the current state of the banlist to a JSON file.
-
-        Args:
-            output_filename (str): Optional argument that specifies the name of the output file.
-                                    If no argument is provided, the default filename is 'current_banlist.json'.
 
         Returns:
             None
@@ -118,7 +116,7 @@ class JSONBanlist(BanlistCompiler):
         banlist = JSONBanlist()
 
         filepath = Path().absolute()
-        filename = (output_filename or "current_banlist") + ".json"
+        filename = "current_banlist.json"
 
         # If the file already exists, delete it
         if os.path.exists(filepath / filename):
@@ -128,3 +126,4 @@ class JSONBanlist(BanlistCompiler):
             json.dump(
                 banlist._current, outf, ensure_ascii=False, indent=4, sort_keys=True
             )
+
