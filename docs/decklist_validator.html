@@ -133,7 +133,15 @@
         async function get_banlist() {
             url = "https://spigushe.github.io/mtg_brawlpioneer/current_banlist.json";
             let response = await fetch(url)
-            banlist = await response.json();
+            let tmp = await response.json();
+            Object.keys(tmp).forEach( cat => {
+                tmp[cat].forEach( card => {
+                    if (!Object.keys(banlist).includes(cat)) {
+                        banlist[cat] = Array();
+                    }
+                    banlist[cat].push(card.toLowerCase());
+                })
+            })
         }
 
         function check_legality() {
@@ -168,9 +176,8 @@
 
         async function control(card) {
             if (card == "") return false;
-            let in_banlist = banlist["banned_cards"].includes(card);
-            let legal = banlist["banned_cards"].includes(card) ? "banned" : "unknown";
-            if (!in_banlist) {
+            let legal = banlist["banned_cards"].includes(card.toLowerCase()) ? "banned" : "unknown";
+            if (legal != "banned") {
                 legal = await check_scryfall(card, "legal");
             }
             return {
@@ -217,14 +224,14 @@
             tr.id = "tr_" + idx;
             td_legality.id = card_info["tr.id"];
             // Adding link to scryfall
-            bannned_as_commander = banlist["banned_commanders"].includes(card_info["card"]) ? `<i class="fa-solid fa-triangle-exclamation text-warning me-2" alt="Banned as commadner" title="Banned as commander"></i>` : ``;
+            //bannned_as_commander = banlist["banned_commanders"].includes(card_info["card"]) ? `<i class="fa-solid fa-triangle-exclamation text-warning me-2" alt="Banned as commadner" title="Banned as commander"></i>` : ``;
             td_name.innerHTML = `<span class="card-name" scryfallId="`+card_info["id"]+`" data-tippy-content="
 <div class='card-container'>
 <img
 data-src='https://api.scryfall.com/cards/`+card_info["id"]+`?format=image&version=border_crop'
 class='card-image'
 />
-</div>">`+bannned_as_commander+card_info["card"]+`</span>`;
+</div>">`+card_info["card"]+`</span>`;//+bannned_as_commander+card_info["card"]+`</span>`;
             // Inserting line
             parent[card_info["legal"]].appendChild(tr);
             // Increment counter
