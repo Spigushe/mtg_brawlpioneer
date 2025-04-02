@@ -1,0 +1,18 @@
+[
+    {
+        "date": "2025-01-20",
+        "link": "https://sites.google.com/view/brawl-pioneer/cartes-bannies/historique-des-bans/2025-01-20-br?authuser=0",
+        "special": "",
+        "newly_banned_as_commander": [],
+        "newly_unbanned_as_commander": [],
+        "newly_banned_in_deck": [
+            "Lutri, the Spellchaser",
+            "Mox Amber"
+        ],
+        "newly_unbanned_in_deck": [],
+        "explanations": {
+            "Lutri, the Spellchaser": "The Companion condition is close to nothing in a format where singleton is king- you only need to play a deck with a color identity containing at least blue and red! Some commander where played over some other only for this benefit. As it does not push the format in a more diverse environment, it is thus banned.",
+            "Mox Amber": "This card is also closely related to the structure of the format: having a low cost commander helps casting it over and over. This is the essence of the benefits a player gets from playing Mox Amber. Moreover, have a zero-cost mana source that is not a land helps moving forward and faster in the game. Finaly, this is a combo piece with some commanders. Mox Amber is now banned."
+        }
+    }
+]

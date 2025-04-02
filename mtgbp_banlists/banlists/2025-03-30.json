@@ -1,0 +1,16 @@
+[
+    {
+        "date": "2025-03-30",
+        "link": "https://sites.google.com/view/brawl-pioneer/cartes-bannies/historique-des-bans/2025-03-30-br?authuser=0",
+        "special": "",
+        "newly_banned_as_commander": [],
+        "newly_unbanned_as_commander": [],
+        "newly_banned_in_deck": [
+            "Ertai Resurrected"
+        ],
+        "newly_unbanned_in_deck": [],
+        "explanations": {
+            "Ertai Resurrected": "Interaction spells are supposed to be one-time use only. This is not the case with Ertai. Recursive and available at all time, it is painful to go against even when preparing against counterspells and removals. For the format attractivity and the player experience, it is banned."
+        }
+    }
+]
